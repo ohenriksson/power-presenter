@@ -12,3 +12,6 @@ Combine data from inverter (rs232) and batteries (rs485) using on a arduino runn
 * E-ink display (https://www.waveshare.com/wiki/2.9inch_e-Paper_Module)
 * Generic Arduino board
 * 
+
+## Software
+* utilize pre build arduino crates from (https://github.com/atsamd-rs/atsamd/)
