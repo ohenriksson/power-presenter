@@ -16,3 +16,16 @@ Combine data from inverter (rs232) and batteries (rs485) using on a arduino runn
 
 ## Software
 * utilize pre build arduino crates from (https://github.com/atsamd-rs/atsamd/)
+
+# Getting started
+
+## Prerequisits
+* rust
+* arduino ide
+
+## Build
+1. cd to `rust-arduino-power`.
+1. run `rustup target add atsamd21g` 
+1. run `cargo build`
+
+## Flash to Arduino (To be continued...)
