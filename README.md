@@ -10,6 +10,7 @@ Combine data from inverter (rs232) and batteries (rs485) using on a arduino runn
 * RS232 -> TTL module (MAX3232)
 * RJ45 to RS232 cable (custom pinout)
 * E-ink display (https://www.waveshare.com/wiki/2.9inch_e-Paper_Module)
+   * WaveShare 296x128 px
 * Generic Arduino board
 * 
 
