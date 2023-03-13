@@ -25,7 +25,9 @@ Combine data from inverter (rs232) and batteries (rs485) using on a arduino runn
 
 ## Build
 1. cd to `rust-arduino-power`.
-1. run `rustup target add atsamd21g` 
+1. run `rustup target add atsamd21g`
+   * this step may raise a recoverable error "error: toolchain '<your_stable_toolchain' does not contain component 'rust-std' for target 'atsamd21g'". This is OK. Continue to step 3.
+1. run `rustup target add thumbv6m-none-eabi`
 1. run `cargo build`
 
 ## Flash to Arduino (To be continued...)
