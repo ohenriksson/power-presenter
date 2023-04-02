@@ -15,6 +15,21 @@
 			"options": {
 				"cwd": "rust-arduino-power/"
 			}
+		},
+		{
+			"type": "cargo",
+			"command": "run",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"label": "rust: cargo run",
+			"options": {
+				"cwd": "rust-arduino-power/"
+			}
 		}
 	]
 } 
