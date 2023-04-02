@@ -2,16 +2,29 @@
 name = "rust-arduino-power"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dev-dependencies]
-cortex-m = "0.7"
-usbd-serial = "0.1"
-panic-halt = "0.2"
-panic-semihosting = "0.5"
+# Using AVR the use the MIT or Apache licens is agreed upon.
+license = "MIT OR Apache-2.0"
 
 [dependencies]
-panic-halt = "0.2"
-panic-semihosting = "0.5"
-arduino_nano33iot = { git = "https://github.com/atsamd-rs/atsamd" }
+panic-halt = "0.2.0"
+ufmt = "0.1.0"
+nb = "0.1.2"
+embedded-hal = "0.2.3"
+
+[dependencies.arduino-hal]
+git = "https://github.com/rahix/avr-hal"
+rev = "4c9c44c314eb061ee20556ef10d45dea36e75ee4"
+features = ["arduino-nano"]
+
+# Configure the build for minimal size - AVRs have very little program memory
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
