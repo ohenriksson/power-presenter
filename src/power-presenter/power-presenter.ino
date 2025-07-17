@@ -10,8 +10,6 @@ SoftwareSerial serialMonitor (0 , 1);
 void setup() {
   pinMode(rxPin, INPUT);
   pinMode(txPin, OUTPUT);
-  pinMode(rxPin, 0);
-  pinMode(txPin, 1);
   
   stecaSerial.begin(2400);
   serialMonitor.begin(9600);
@@ -35,5 +33,5 @@ void sendQpigs(){
   serialMonitor.print("Sending QPIGS request\n");
   stecaSerial.print("QPIGS");
   stecaSerial.print("CRC");
-  stecaSerial.print("\n");
+  stecaSerial.println();
 }
