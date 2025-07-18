@@ -1,48 +1,53 @@
 // Board: Arduino Uno
 #include <SoftwareSerial.h>
 
-SoftwareSerial stecaSerial (10, 11, false);
+// SoftwareSerial Serial1 (10, 11, false);
 
 void setup() {
  
   Serial.begin(9600);
-  stecaSerial.begin(9600);
 
+  Serial1.begin(2400);
   Serial.print("Setup Complete\n");
 }
 
 void loop() {
   Serial.print("--Available?");
-  Serial.println(stecaSerial.available());
-  if(stecaSerial.available()) //idle
+  if(Serial1.available()) //idle
   {
     Serial.println("--Yes!");
-    Serial.println("steca available");
-    int ready = stecaSerial.read();
-    Serial.println(ready, HEX );
-    //SEND DATA HERE
-    sendQpigs();
-  
-    while(!stecaSerial.available()){
-      Serial.println("waiting for steca...");
-      delay(1000);
-    }
-    while(stecaSerial.peek() != -1){
-      String result = stecaSerial.readString();
-      Serial.print(result);
-    }
+    startTalking();
+    
   }else{
-    Serial.println("--No..");
+    Serial.println("--No...");
   }
 
   Serial.println();
   delay(1000);
 }
 
+void startTalking(){
+  Serial.println(Serial1.peek());
+  Serial1.write(123);
+  // int ready = Serial1.readBytes();
+  // Serial.println(ready, HEX );
+  sendQpigs();
+  
+    int timeout = 10;
+    while(!Serial1.available() && timeout > 0){
+      Serial.println("waiting for steca...");
+      delay(1000);
+      timeout--;
+    }
+    while(Serial1.peek() != -1 && timeout > 0){
+      String result = Serial1.readString();
+      Serial.print(result);
+    }
+}
 
 void sendQpigs(){
   Serial.print("Sending QPIGS request\n");
-  stecaSerial.print("QPIGS");
-  stecaSerial.print("CRC");
-  stecaSerial.println();
+  Serial1.print("QPIGS");
+  Serial1.print("CRC");
+  Serial1.println();
 }
