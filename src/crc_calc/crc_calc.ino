@@ -1,5 +1,5 @@
 String QPIGS = "QPIGS";
-    String stringOne;
+String stringOne;
 
 //variables for Inverter CRC added
   uint16_t vgCrcCheck;
@@ -8,7 +8,7 @@ String QPIGS = "QPIGS";
         int vRequestLen = 0;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
     Serial2.begin(2400);
       Serial2.setTimeout(10000);
         vRequestLen = QPIGS.length();
@@ -33,17 +33,24 @@ void loop() {
         int yy;
           sscanf(s, "%x %x", &xx, &yy);  
             vgHexOne = xx;
-              vgHexTwo = yy;      
+              vgHexTwo = yy;   
+
   //Sending Request to inverter
+  Serial.println("sending QPIGS");
   Serial2.print(QPIGS);
-    Serial2.print(vgHexOne); //CRC One
-      Serial2.print(vgHexTwo);  //CRC Two
-        Serial2.print("\r");
-  //
+  // Serial2.print(vgHexOne); //CRC One
+  // Serial2.print(vgHexTwo);  //CRC Two
+  Serial2.print("\r");
+  
+  while(Serial2.available()){
+    Serial.println (Serial2.read());
+  }
+
   stringOne = Serial2.readStringUntil('\r');
-    Serial.println (stringOne);
-      delay(100);
-        stringOne = "";
+  // stringOne = Serial2.readString();
+  Serial.println (stringOne);
+  delay(100);
+  stringOne = "";
 }
 
 // CRC Functions
