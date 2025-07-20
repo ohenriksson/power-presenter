@@ -38,8 +38,8 @@ void loop() {
   //Sending Request to inverter
   Serial.println("sending QPIGS");
   Serial2.print(QPIGS);
-  // Serial2.print(vgHexOne); //CRC One
-  // Serial2.print(vgHexTwo);  //CRC Two
+  Serial2.print(vgHexOne); //CRC One
+  Serial2.print(vgHexTwo);  //CRC Two
   Serial2.print("\r");
   
   while(Serial2.available()){
