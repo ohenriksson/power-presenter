@@ -18,6 +18,11 @@ void setup() {
 }
 
 void loop() {
+
+  byte QPIGScommand[] = { 81, 80, 73, 71, 83 };
+  unsigned int crc = cal_crc_half(QPIGScommand,5);
+
+
   Serial.print("--Available?");
   if(Serial1.available()) //idle
   {
